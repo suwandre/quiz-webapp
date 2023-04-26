@@ -16,7 +16,7 @@ This web app has minimal styling. It will be improved in the future.
 - [Emotion](https://emotion.sh/docs/introduction) - CSS styling library for JavaScript
 - [React Moralis](https://www.npmjs.com/package/react-moralis) - React Wrapper for Moralis SDK
 - [Vercel](https://vercel.com) - A platform to deploy the webapp (Specially made for Next.js)
-### BACKEND
+### BACKEND ([Click here to go to the backend repo](https://github.com/suwandre/quiz-webapp-backend)]
 - [Node.js](https://nodejs.org/en/) - JS runtime environment
 - [Express.js](https://expressjs.com) - Minimalist web framework for Node.js, used for building API
 - [MongoDB](https://www.mongodb.com) - A NoSQL database program
