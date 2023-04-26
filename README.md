@@ -3,7 +3,7 @@ Simple Webapp for trivia quiz
 **NOTE: Please have a Metamask account to log in. You will NOT be required to sign any transactions; you are only required to sign a signin message request.**
 This web app has minimal styling. It will be improved in the future.
 
-**Please ignore the `Deceptive Site Request ahead` message. This is because the domain for the backend only allows one domain and it is already set to another repo. No signatures apart from signing in is required!**
+**Please ignore the `Deceptive Site Request ahead` message when connecting with Metamask. This is because the domain for the backend only allows one domain and it is already set to another repo. No signatures apart from signing in is required!**
 
 ## Features
 - Connect with your Metamask account to keep track of your stats and play the quiz.
