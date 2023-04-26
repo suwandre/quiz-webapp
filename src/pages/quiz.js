@@ -81,32 +81,36 @@ const Quiz = ({quizDatas}) => {
         // const correctAnswers = quizDatas[questionId - 1].correctAnswers.length;
         const isCorrect = quizDatas[questionId - 1].correctAnswer.includes(e.target.id);
 
+        console.log('correctAnswer', quizDatas[questionId - 1].correctAnswer);
+        console.log('e target id', e.target.id)
+
         if (e.target.checked) {
             // check if choice is correct
             if (isCorrect) {
                 setTemporaryPoints(prevPoints => prevPoints + points);
                 setTemporaryCorrectChoices(prevCorrectChoices => prevCorrectChoices + 1);
             } else {
+                console.log('not correct!');
                 setTemporaryChosenAnswers(answers => answers.filter(answer => answer !== e.target.id));
 
                 // if the answer is wrong, we check first the amount of answers available
                 // if there is only 1 answer available:
-                if (availableAnswers === 1) {
+                // if (availableAnswers === 1) {
                     // remove 1000 points
                     setTemporaryPoints(prevPoints => prevPoints - 1000);
                     setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices + 1);
                 // if there is more than 1 answer available
-                } 
-                // else {
-                //     // if correct answer amount is less than half of the available ones, remove only 1000 points
-                //     if (correctAnswers < (availableAnswers /2)) {
-                //         setTemporaryPoints(prevPoints => prevPoints - 1000);
-                //         setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices + 1);
-                //     } else {
-                //         // if more than half or equal to half, we remove 2000 points.
-                //         setTemporaryPoints(prevPoints => prevPoints - 2000);
-                //         setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices + 1);
-                //     }
+                // } else {
+                    console.log('here');
+                    // // if correct answer amount is less than half of the available ones, remove only 1000 points
+                    // if (correctAnswers < (availableAnswers /2)) {
+                    //     setTemporaryPoints(prevPoints => prevPoints - 1000);
+                    //     setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices + 1);
+                    // } else {
+                    //     // if more than half or equal to half, we remove 2000 points.
+                    //     setTemporaryPoints(prevPoints => prevPoints - 2000);
+                    //     setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices + 1);
+                    // }
                 // }
             }
             setTemporaryChosenAnswers([...temporaryChosenAnswers, e.target.id]);
@@ -120,7 +124,9 @@ const Quiz = ({quizDatas}) => {
                 if (availableAnswers === 1) {
                     setTemporaryPoints(prevPoints => prevPoints + 1000);
                     setTemporaryWrongChoices(prevWrongChoices => prevWrongChoices - 1);
-                } 
+                } else {
+                    console.log('here');
+                }
                 // else {
                 //     if (correctAnswers < (availableAnswers / 2)) {
                 //         setTemporaryPoints(prevPoints => prevPoints + 1000);

@@ -49,7 +49,7 @@ export default function Home() {
   
       return () => clearTimeout(redirectTimer);
     }
-  }, [router])
+  }, [isAuthenticated, user, router])
 
   if (!isAuthenticated || !user) {
     return (
