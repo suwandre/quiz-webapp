@@ -75,6 +75,7 @@ const Start = () => {
           justify='center'
           align='center'
           direction='column'
+          style={{margin: 'auto', marginTop: '10%'}}
         >
             <Box
                 sx={(theme) => ({

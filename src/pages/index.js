@@ -42,11 +42,13 @@ export default function Home() {
   const [ isAuthenticating, setIsAuthenticating ] = useState(false);
 
   useEffect(() => {
-    const redirectTimer = setTimeout(() => {
-      router.push('/start');
-    }, 3000)
-
-    return () => clearTimeout(redirectTimer);
+    if (isAuthenticated && user) {
+      const redirectTimer = setTimeout(() => {
+        router.push('/start');
+      }, 3000)
+  
+      return () => clearTimeout(redirectTimer);
+    }
   }, [router])
 
   if (!isAuthenticated || !user) {
@@ -56,6 +58,7 @@ export default function Home() {
           justify='center'
           align='center'
           direction='column'
+          style={{margin: 'auto', marginTop: '20%'}}
       >
         <Button className={classes.walletButton} onClick={() => handleAuth(
           setAuthError,
@@ -77,6 +80,7 @@ export default function Home() {
           justify='center'
           align='center'
           direction='column'
+          style={{margin: 'auto', marginTop: '20%'}}
       >
         <Text>Welcome, <Text span c='#42ca9f'>{user && user.attributes.ethAddress}!</Text></Text>
         <Text>Logging you in. Please wait a few seconds...</Text>

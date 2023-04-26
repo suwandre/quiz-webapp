@@ -189,15 +189,20 @@ const Quiz = ({quizDatas}) => {
                     })}
                 >
                     <h1>{questionId}. {quizDatas[questionId-1].question}</h1>
-                    <h6>Duration: {quizDatas[questionId-1].duration} seconds</h6>
-                    <h6>Points obtainable: {quizDatas[questionId-1].minimumPoints} - {quizDatas[questionId-1].maximumPoints}</h6>
-                    {timerSeconds > 0 ? <h6>Time left: {timerSeconds} seconds</h6> : questionId < quizDatas.length ? nextQuestion() : <h5>Time&apos`s up</h5>}
+                    <Text>Duration: {quizDatas[questionId-1].duration} seconds</Text>
+                    <Text>Points obtainable: {quizDatas[questionId-1].minimumPoints} - {quizDatas[questionId-1].maximumPoints}</Text>
+                    {timerSeconds > 0 ? <Text sx={(theme) => ({
+                        marginBottom: 20,
+                    })}>Time left: {timerSeconds} seconds</Text> : questionId < quizDatas.length ? nextQuestion() : <Text sx={(theme) => ({
+                        marginBottom: 20,
+                    })}>Time is up</Text>}
                     {quizDatas[questionId-1].answers.map((answer) => (
                         <Checkbox
                             sx={(theme) => ({
                                 marginTop: 10,
                                 height: 30,
                             })}
+                            color='#42ca9f'
                             key={answer}
                             id={answer}
                             label={answer}
@@ -212,6 +217,9 @@ const Quiz = ({quizDatas}) => {
                                     marginTop: 25,
                                     marginBottom: 25,
                                     backgroundColor: '#42ca9f',
+                                    ':hover': {
+                                        backgroundColor: '#42ca9f',
+                                    }
                                 })}
                                 onClick={nextQuestion}
                                 >
@@ -222,9 +230,11 @@ const Quiz = ({quizDatas}) => {
                                     marginTop: 25,
                                     marginBottom: 25,
                                     backgroundColor: '#42ca9f',
+                                    ':hover': {
+                                        backgroundColor: '#42ca9f',
+                                    }
                                 })}
                                 onClick={() => {finalizeQuiz(); setRemoveButton(true);}}
-                                
                                 >
                                     End quiz
                                 </Button>
@@ -247,7 +257,13 @@ const Quiz = ({quizDatas}) => {
                 >
                     <h2>Quiz ended.</h2>
                     <h4>Thanks for playing!</h4>
-                    {!quizEnded ? <></> : <Button onClick={() => router.replace('/')}>Return to start page</Button>}
+                    {!quizEnded ? <></> : <Button sx={(theme) => ({
+                        backgroundColor: '#42ca9f',
+                        ':hover': {
+                            backgroundColor: '#42ca9f',
+                        },
+                        marginTop: 25,
+                    })} onClick={() => router.replace('/')}>Return to start page</Button>}
                 </Box>
             )
         }
@@ -256,17 +272,17 @@ const Quiz = ({quizDatas}) => {
     const CurrentStats = () => {
         return (
             <Box
-                    sx={(theme) => ({
-                    border: '3px solid #42ca9f',
-                    marginTop: 50,
-                    borderRadius: theme.radius.md,
-                    width: '35%',
-                    textAlign: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    })}
-                >
+                sx={(theme) => ({
+                border: '3px solid #42ca9f',
+                marginTop: 50,
+                borderRadius: theme.radius.md,
+                width: '35%',
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                })}
+            >
                 <Text sx={(theme) => ({
                     fontSize: 44,
                     fontWeight: 700,
@@ -274,25 +290,28 @@ const Quiz = ({quizDatas}) => {
                     CURRENT STATS
                 </Text>
                 <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='row'
+                    sx={(theme) => ({
+                        margin: 'auto'
+                    })}
                 >
                     <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='column'
                     >
                         <h3>TOTAL POINTS</h3>
-                        <p>{correctChoices}/{correctChoices + wrongChoices}</p>
+                        <p>{points}/{totalPoints}</p>
                     </Flex>
                     <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='column'
+                    sx={(theme) => ({
+                        marginLeft: 80
+                    })}
                     >
                         <h3>CORRECT CHOICES</h3>
                         <p>{correctChoices}/{correctChoices + wrongChoices}</p>
@@ -320,32 +339,35 @@ const Quiz = ({quizDatas}) => {
                     fontSize: 44,
                     fontWeight: 700,
                 })}>
-                    CURRENT STATS
+                    FINAL STATS
                 </Text>
                 <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='row'
+                    sx={(theme) => ({
+                        margin: 'auto'
+                    })}
                 >
                     <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='column'
                     >
                         <h3>TOTAL POINTS</h3>
-                        <p>{correctChoices}/{correctChoices + wrongChoices}</p>
+                        <p>{points}/{totalPoints}</p>
                     </Flex>
                     <Flex
-                    gap='sm'
                     justify='center'
                     align='center'
                     direction='column'
+                    sx={(theme) => ({
+                        marginLeft: 80
+                    })}
                     >
                         <h3>CORRECT CHOICES</h3>
                         <p>{correctChoices}/{correctChoices + wrongChoices}</p>
-                    </Flex>
+                    </Flex>          
                 </Flex>
             </Box>
         )
@@ -358,6 +380,7 @@ const Quiz = ({quizDatas}) => {
                 justify='center'
                 align='center'
                 direction='column'
+                style={{margin: 'auto', marginTop: '20%'}}
             > 
                 <h4>Click the button below to start the quiz.</h4>
                 <Button
